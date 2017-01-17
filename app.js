@@ -1,12 +1,12 @@
-var myApp = angular.module('hello', ['ui.router']);
+var myApp = angular.module('hello', ['ui.router','ngCookies']);
 
-myApp.config(function($stateProvider) {
+myApp.config(function($stateProvider, $urlRouterProvider) {
   // An array of state definitions
   var states = [
-    { name: 'hello', url: '/hello', component: 'hello' },
-    { name: 'about', url: '/about', component: 'about' },
-    
-    { 
+    { name: 'hello', url: '/hello', component: 'hello', authenticate:true },
+    { name: 'about', url: '/about', component: 'about', authenticate:true },
+    { name: 'login', url:'/login', component: 'login', authenticate:false},
+    {
       name: 'people', 
       url: '/people', 
       component: 'people',
@@ -15,6 +15,7 @@ myApp.config(function($stateProvider) {
           return PeopleService.getAllPeople();
         }
       }
+      , authenticate:true
     },
     
     { 
@@ -29,8 +30,9 @@ myApp.config(function($stateProvider) {
         }
       }
     }
-  ];
-  
+  ]
+
+    $urlRouterProvider.otherwise("/login");
   // Loop over the state definitions and register them
   states.forEach(function(state) {
     $stateProvider.state(state);
@@ -38,7 +40,13 @@ myApp.config(function($stateProvider) {
 });
 
 
-myApp.run(function($http, $uiRouter) {
-  window['ui-router-visualizer'].visualizer($uiRouter);
-  $http.get('data/people.json', { cache: true });
-});
+myApp.run(['$rootScope', '$state','$cookieStore', 'AuthService', function ($rootScope, $state,$cookieStore, AuthService) {
+    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+        if (toState.authenticate && !AuthService.isAuthenticated()){
+            // User isn’t authenticated
+            $state.transitionTo("login");
+            event.preventDefault();
+        }
+    });
+  //$http.get('data/people.json', { cache: true });
+}]);
