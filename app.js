@@ -1,13 +1,12 @@
-var myApp = angular.module('hello', ['ui.router','ngCookies']);
-
-myApp.config(function($stateProvider, $urlRouterProvider) {
+var myApp = angular.module('hello', ['ui.router','ngCookies']).config(function($stateProvider, $urlRouterProvider) {
   // An array of state definitions
   var states = [
-    { name: 'hello', url: '/hello', component: 'hello', authenticate:true },
-    { name: 'about', url: '/about', component: 'about', authenticate:true },
     { name: 'login', url:'/login', component: 'login', authenticate:false},
+    { name: 'home', url: '', component: 'home', authenticate:true },
+    { name: 'home.hello', url: '/hello', component: 'hello', authenticate:true },
+    { name: 'home.about', url: '/about', component: 'about', authenticate:true },
     {
-      name: 'people', 
+      name: 'home.people',
       url: '/people', 
       component: 'people',
       resolve: {
@@ -28,19 +27,21 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
             return person.id === $stateParams.personId;
           });
         }
-      }
+      },
+        authenticate:true
     }
   ]
 
-    $urlRouterProvider.otherwise("/login");
+  $urlRouterProvider.otherwise("/login");
   // Loop over the state definitions and register them
   states.forEach(function(state) {
     $stateProvider.state(state);
   });
-});
-
-
-myApp.run(['$rootScope', '$state','$cookieStore', 'AuthService', function ($rootScope, $state,$cookieStore, AuthService) {
+}).run(['$rootScope', '$state','$cookieStore','$http','$stateParams', 'AuthService', function ($rootScope, $state,$cookieStore,$http,$stateParams, AuthService) {
+    $rootScope.globals = $cookieStore.get('globals') || {};
+    if ($rootScope.globals.currentUser) {
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+    }
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
         if (toState.authenticate && !AuthService.isAuthenticated()){
             // User isn’t authenticated

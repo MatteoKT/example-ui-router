@@ -3,25 +3,22 @@
  */
 myApp.component('login', {
     templateUrl: 'components/login/loginView.html',
-    controller: function () {
-        var $ctrl = this;
-        $ctrl.$postLink = function () {
+    controller:  function ($scope, $rootScope, $state, AuthService) {
+        // reset login status
+        AuthService.clearCredentials();
 
-        }
+        $scope.login = function () {
+            $scope.dataLoading = true;
+            AuthService.login($scope.username, $scope.password, function (response) {
+                if (response.success) {
+                    AuthService.setCredentials($scope.username, $scope.password);
 
-        // $ctrl.$onInit = function () {
-        //     $ctrl.items = $ctrl.resolve.items;
-        //     $ctrl.selected = {
-        //         item: $ctrl.items[0]
-        //     };
-        // };
 
-        $ctrl.ok = function () {
-            $ctrl.close({$value: $ctrl.selected.item});
-        };
-
-        $ctrl.cancel = function () {
-            $ctrl.dismiss({$value: 'cancel'});
+                } else {
+                    $scope.error = response.message;
+                    $scope.dataLoading = false;
+                }
+            });
         };
     }
 });

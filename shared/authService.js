@@ -43,6 +43,9 @@
                 $rootScope.globals = {};
                 $cookieStore.remove('globals');
                 $http.defaults.headers.common.Authorization = 'Basic ';
+            },
+            isAuthenticated : function () {
+                return !$rootScope.globals.currentUser
             }
         }
     };
