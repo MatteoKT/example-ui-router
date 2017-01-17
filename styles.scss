@@ -56,6 +56,10 @@ body.debug-sref {
   }
 }
 
+.nav.nav-sidebar {
+  background-color: darken(darkgray, 25%);
+}
+
 body.debug-view {
   ui-view {
     padding: 0 1em 1em 1em;

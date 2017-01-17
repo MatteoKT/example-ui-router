@@ -42,6 +42,9 @@ body.debug-sref [ui-sref]:after {
 body.debug-sref [ui-sref] {
   padding: 0 0.25em; }
 
+.nav.nav-sidebar {
+  background-color: dimgray; }
+
 body.debug-view ui-view {
   padding: 0 1em 1em 1em;
   display: block;
