@@ -1,8 +1,8 @@
-var myApp = angular.module('hello', ['ui.router','ngCookies']).config(function($stateProvider, $urlRouterProvider) {
+var myApp = angular.module('hello', ['ui.router','ui.bootstrap','ngCookies']).config(function($stateProvider, $urlRouterProvider) {
   // An array of state definitions
   var states = [
     { name: 'login', url:'/login', component: 'login', authenticate:false},
-    { name: 'home', url: '', component: 'home', authenticate:true },
+    { name: 'home', url: '/', component: 'home', authenticate:true },
     { name: 'home.hello', url: '/hello', component: 'hello', authenticate:true },
     { name: 'home.about', url: '/about', component: 'about', authenticate:true },
     {
@@ -42,7 +42,7 @@ var myApp = angular.module('hello', ['ui.router','ngCookies']).config(function($
     if ($rootScope.globals.currentUser) {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
     }
-    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         if (toState.authenticate && !AuthService.isAuthenticated()){
             // User isn’t authenticated
             $state.transitionTo("login");
