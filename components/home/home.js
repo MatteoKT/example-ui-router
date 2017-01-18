@@ -4,4 +4,4 @@ angular.module('hello').component('home', {
     controller: function() {
 
     }
-})
+});
