@@ -7,14 +7,14 @@ gulp.task('serve', ['sass'], function() {
 
     browserSync.init({
         server: {
-            baseDir: "./"
-        },
-        browser: "Google Chrome"
+            baseDir: "./",
+            online: "true"
+        }
     });
 
     gulp.watch("*.scss", ['sass']);
-    gulp.watch("**/*.html").on('change', browserSync.reload);
-    gulp.watch("**/*.js").on('change', browserSync.reload);
+    gulp.watch(["./**/*.{html,js}"]).on('change', browserSync.reload);
+
 });
 
 // Compile sass into CSS & auto-inject into browsers

@@ -12,8 +12,7 @@ myApp.component('login', {
             AuthService.login($scope.username, $scope.password, function (response) {
                 if (response.success) {
                     AuthService.setCredentials($scope.username, $scope.password);
-
-
+                    $state.transitionTo('home')
                 } else {
                     $scope.error = response.message;
                     $scope.dataLoading = false;
