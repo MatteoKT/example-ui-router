@@ -1,3 +1,5 @@
+(function (angular) {
+    'use strict';
 angular.module('hello').service('PeopleService', function($http) {
   var service = {
     getAllPeople: function() {
@@ -18,3 +20,4 @@ angular.module('hello').service('PeopleService', function($http) {
   
   return service;
 });
+})(window.angular);

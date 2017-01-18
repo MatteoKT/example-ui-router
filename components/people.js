@@ -1,3 +1,5 @@
+(function (angular) {
+    'use strict';
 angular.module('hello').component('people', {
   bindings: { people: '<' },
   
@@ -15,3 +17,4 @@ angular.module('hello').component('people', {
             '  <ui-view></ui-view>' +
             '</div>'
 });
+})(window.angular);

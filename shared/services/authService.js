@@ -50,9 +50,9 @@
         }
     };
     AuthService.$inject = ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout'];
-    myApp.factory("AuthService", AuthService);
+    angular.module('hello').factory("AuthService", AuthService);
 
-    myApp.factory('Base64', function () {
+    angular.module('hello').factory('Base64', function () {
         /* jshint ignore:start */
 
         var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';

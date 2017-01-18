@@ -1,3 +1,5 @@
+(function (angular) {
+    'use strict';
 angular.module('hello').component('person', {
   bindings: { person: '<' },
   template: '<h3>A person!</h3>' +
@@ -10,3 +12,4 @@ angular.module('hello').component('person', {
             
             '<button ui-sref="people">Close</button>'
 });
+})(window.angular);

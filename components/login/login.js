@@ -1,7 +1,8 @@
 /**
  * Created by Giulio on 17/01/2017.
  */
-myApp.component('login', {
+(function (angular) {
+angular.module('hello').component('login', {
     templateUrl: 'components/login/loginView.html',
     controller:  function ($scope, $rootScope, $state, AuthService) {
         // reset login status
@@ -21,3 +22,4 @@ myApp.component('login', {
         };
     }
 });
+})(window.angular);
