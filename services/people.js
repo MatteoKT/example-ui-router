@@ -5,7 +5,6 @@ angular.module('hello').service('PeopleService', function($http) {
         return resp.data;
       });
     },
-    
     getPerson: function(id) {
       function personMatchesParam(person) {
         return person.id === id;
@@ -15,7 +14,7 @@ angular.module('hello').service('PeopleService', function($http) {
         return people.find(personMatchesParam)
       });
     }
-  }
+  };
   
   return service;
-})
+});
