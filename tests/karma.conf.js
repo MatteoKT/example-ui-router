@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '../',
+    basePath: '',
 
 
     // frameworks to use
@@ -21,7 +21,11 @@ module.exports = function(config) {
         './node_modules/angular-mocks/angular-mocks.js',                 // loads our modules for tests
         './node_modules/angular-cookies/angular-cookies.js',
         './app.js',
+        './components/**/*.js',
         './shared/services/authService.js',                                 // our Users factory
+        './shared/services/authService.spec.js',
+        './components/login/login.test.js',
+        '.data/credentials.json'
         './tests/services/test_authService.js',
         './tests/components/test_components.js'
     ],
@@ -74,5 +78,4 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity
   })
-};
-
+}
