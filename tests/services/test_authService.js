@@ -77,11 +77,11 @@ describe('Users factory', function() {
             expect($scope.error).toBeUndefined();
         });
 
-        it('initializes by getting the list of items', function() {
+        it('initializes by getting credentials', function() {
             spyOn($scope, 'login');
             $timeout.flush();
-            expect($scope.dataLoading).toBeDefined();
-            expect($scope.error).toBeDefined();
+            expect($scope.dataLoading).toBeUndefined();
+            expect($scope.error).toBeUndefined();
         });
 
     });
