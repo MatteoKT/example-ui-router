@@ -1,12 +1,15 @@
 
 (function (angular) {
-angular.module('hello').component('login', {
-    templateUrl: 'components/login/loginView.html',
-    controller:  'LoginCtrl'
-});
-var LoginCtrl = function ($scope, $rootScope, $state, AuthService) {
+    angular.module('hello').component('login', {
+        templateUrl: 'components/login/loginView.html',
+        controller:  LoginCtrl
+    });
+
+    function LoginCtrl($scope, $rootScope, $state, AuthService) {
         // reset login status
         AuthService.clearCredentials();
+
+        $scope.error = null;
 
         $scope.login = function () {
             $scope.dataLoading = true;
@@ -21,6 +24,7 @@ var LoginCtrl = function ($scope, $rootScope, $state, AuthService) {
             });
         };
     }
+
     LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'AuthService'];
-    angular.module('HelloControllers').controller('LoginCtrl',LoginCtrl);
+
 })(window.angular);
