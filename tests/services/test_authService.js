@@ -34,4 +34,8 @@ describe('Users factory', function() {
     it('should exist', function() {
         expect(AuthService).toBeDefined();
     });
+
+    it('should have a LoginCtrl controller', function() {
+        expect($state.$ctrl).toBeDefined();
+    });
 });
