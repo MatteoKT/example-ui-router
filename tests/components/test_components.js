@@ -1,6 +1,6 @@
 describe('Login Controller', function() {
 
-    var $scope, $rootScope, $state, AuthService, LoginCtrl
+    var $scope, $rootScope, $state, AuthService, LoginCtrl;
     beforeEach(angular.mock.module('hello'));
 
     beforeEach(inject(function($injector) {
