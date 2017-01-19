@@ -26,6 +26,8 @@ module.exports = function(config) {
         './shared/services/authService.spec.js',
         './components/login/login.test.js',
         '.data/credentials.json'
+        './tests/services/test_authService.js',
+        './tests/components/test_components.js'
     ],
 
 

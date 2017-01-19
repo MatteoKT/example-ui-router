@@ -32,7 +32,7 @@ angular.module('hello', ['ui.router','ui.bootstrap','ngCookies']).config(functio
       },
         authenticate:true
     }
-  ]
+  ];
 
   $urlRouterProvider.otherwise("/login");
   // Loop over the state definitions and register them
