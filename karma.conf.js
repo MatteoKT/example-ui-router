@@ -21,8 +21,11 @@ module.exports = function(config) {
         './node_modules/angular-mocks/angular-mocks.js',                 // loads our modules for tests
         './node_modules/angular-cookies/angular-cookies.js',
         './app.js',
+        './components/**/*.js',
         './shared/services/authService.js',                                 // our Users factory
-        './shared/services/authService.spec.js'
+        './shared/services/authService.spec.js',
+        './components/login/login.test.js',
+        '.data/credentials.json'
     ],
 
 

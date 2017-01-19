@@ -20,14 +20,14 @@ describe('Users factory', function() {
             $state = _$state_;
             $injector = _$injector_;
 
-            // We need add the template entry into the templateCache if we ever
+            // We need to add the template entry into the templateCache if we ever
             // specify a templateUrl
             $templateCache.put('loginView.html', '');
         })
     });
 
     it('should respond to URL', function() {
-        expect($state.href(state, { })).toEqual('#!/login');
+        expect($state.href(state, {})).toEqual('#!/login');
     });
 
     // A simple test to verify the Users factory exists
