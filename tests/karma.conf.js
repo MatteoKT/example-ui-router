@@ -15,19 +15,19 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        './node_modules/angular/angular.js',                             // angular
-        './node_modules/angular-ui-router/release/angular-ui-router.js', // ui-router
-        './node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
-        './node_modules/angular-mocks/angular-mocks.js',                 // loads our modules for tests
-        './node_modules/angular-cookies/angular-cookies.js',
-        './app.js',
-        './components/**/*.js',
-        './shared/services/authService.js',                                 // our Users factory
-        './shared/services/authService.spec.js',
+        '../node_modules/angular/angular.js',                             // angular
+        '../node_modules/angular-ui-router/release/angular-ui-router.js', // ui-router
+        '../node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
+        '../node_modules/angular-mocks/angular-mocks.js',                 // loads our modules for tests
+        '../node_modules/angular-cookies/angular-cookies.js',
+        '../app.js',
+        '../components/**/*.js',
+        '../shared/services/authService.js',                                 // our Users factory
+        '../shared/services/authService.spec.js',
         './components/login/login.test.js',
-        '.data/credentials.json'
-        './tests/services/test_authService.js',
-        './tests/components/test_components.js'
+        '../data/credentials.json',
+        '../tests/services/test_authService.js',
+        '../tests/components/test_components.js'
     ],
 
 
