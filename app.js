@@ -1,6 +1,6 @@
 (function (angular) {
     'use strict';
-angular.module('hello', ['ui.router','ui.bootstrap','ngCookies']).config(function($stateProvider, $urlRouterProvider) {
+angular.module('hello', ['ui.router','ui.bootstrap','ngCookies','HelloControllers']).config(function($stateProvider, $urlRouterProvider) {
   // An array of state definitions
   var states = [
     { name: 'login', url:'/login', component: 'login', authenticate:false},
@@ -53,4 +53,5 @@ angular.module('hello', ['ui.router','ui.bootstrap','ngCookies']).config(functio
     });
   //$http.get('data/people.json', { cache: true });
 }]);
+angular.module('HelloControllers', []);
 })(window.angular);

@@ -1,7 +1,8 @@
 // Be descriptive with titles here. The describe and it titles combined read like a sentence.
 describe('Users factory', function() {
     var AuthService;
-    var $rootScope, $state, $q, $injector, state = 'login',ctrl, httpBackend;
+    var $scope , $timeout,$rootScope, $state, $injector, state = 'login',$controller, $httpBackend;
+
 
     // Before each test load our hello module
     beforeEach(angular.mock.module('hello'));
@@ -14,13 +15,20 @@ describe('Users factory', function() {
 
 
     beforeEach(
-        inject(function(_$rootScope_, _$state_, _$injector_,_$q_, $templateCache) {
+        inject(function(_$rootScope_, _$state_, _$injector_, $templateCache,_$controller_,_$httpBackend_,_AuthService_, _$timeout_) {
             $rootScope = _$rootScope_;
             $state = _$state_;
             $injector = _$injector_;
-            $q = _$q_;
-
-
+            $httpBackend = _$httpBackend_;
+            $timeout = _$timeout_;
+            AuthService = _AuthService_;
+            $scope = $rootScope.$new();
+            $controller = _$controller_('LoginCtrl',{
+                $scope :  $scope,
+                $rootScope: $rootScope,
+                $state: $state,
+                AuthService: AuthService
+            });
             // We need to add the template entry into the templateCache if we ever
             // specify a templateUrl
             $templateCache.put('loginView.html', '');
@@ -52,5 +60,29 @@ describe('Users factory', function() {
         $rootScope.$digest();
         //$state.transitionTo('login');
         expect($state.current.name).toBe('login');
+    });
+
+    it('current state be "login"', function() {
+        $state.go('login');
+        $rootScope.$digest();
+        //$state.transitionTo('login');
+        expect($state.current.name).toBe('login');
+    });
+    describe('initialization', function() {
+
+        it('initializes with proper $scope variables and methods', function() {
+            $scope.$apply(); // Let Angular know some changes have happened (in this case, the scope is created)
+            expect($scope.login).toBeDefined();
+            expect($scope.dataLoading).toBeUndefined();
+            expect($scope.error).toBeUndefined();
+        });
+
+        it('initializes by getting the list of items', function() {
+            spyOn($scope, 'login');
+            $timeout.flush();
+            expect($scope.dataLoading).toBeDefined();
+            expect($scope.error).toBeDefined();
+        });
+
     });
 });

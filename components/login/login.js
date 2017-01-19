@@ -2,7 +2,9 @@
 (function (angular) {
 angular.module('hello').component('login', {
     templateUrl: 'components/login/loginView.html',
-    controller:  function ($scope, $rootScope, $state, AuthService) {
+    controller:  'LoginCtrl'
+});
+var LoginCtrl = function ($scope, $rootScope, $state, AuthService) {
         // reset login status
         AuthService.clearCredentials();
 
@@ -19,5 +21,6 @@ angular.module('hello').component('login', {
             });
         };
     }
-});
+    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'AuthService'];
+    angular.module('HelloControllers').controller('LoginCtrl',LoginCtrl);
 })(window.angular);
